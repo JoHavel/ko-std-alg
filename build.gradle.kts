@@ -29,7 +29,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/JoHavel/NeuralNetwork")
+            url = uri("https://maven.pkg.github.com/JoHavel/ko-std-alg")
             credentials {
                 username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("GIT_KEY")
@@ -55,7 +55,7 @@ kotlin {
     // For Linux, should be changed to e.g. linuxX64
     // For MacOS, should be changed to e.g. macosX64
     // For Windows, should be changed to e.g. mingwX64
-//    mingwX64("mingw")
+    mingwX64("mingw")
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -92,15 +92,13 @@ kotlin {
                 implementation(kotlin("test-js"))
             }
         }
-//        val mingwMain by getting {
-//            dependencies {
-//                //implementation("com.kyonifer:koma-core-api-common:0.12")
-//                implementation("com.kyonifer:koma-core-cblas:0.12")
-//                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version")
-//            }
-//        }
-//        val mingwTest by getting {
-//        }
+        val mingwMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serializationVersion")
+            }
+        }
+        val mingwTest by getting {
+        }
     }
 }
 
